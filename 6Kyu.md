@@ -66,4 +66,63 @@ const order = (words) => {
 	return result.join(' ')
 }
 ```
+---
 
+### Find the stray number
+In an odd-length array of integers, in which all of them are the same, except for one signle number, return that single different number.
+
+Example: `[1, 1, 2] ==> 2`
+
+```js
+const stray = (numbers) => {
+	for (let i = 0; i < numbers.length; i++) {
+		if (numbers.indexOf(numbers[i] === numbers.lastIndexOf(numbers[i]))){
+			return numbers[i]
+		}
+	}
+}
+```
+---
+
+### Difference of volumes of cuboids
+Create a program that takes two lists of integers, `a` and `b`. Each list will constst of 3 positive integers above 0, representing the dimensions of cuboids `a` and `b`. You must find the difference of the cuboids' volumes regardless of which is bigger.
+
+Example: `([2, 2, 3], [5, 4, 1])` `a = 12` `b = 20` the function returns `8`
+
+```js
+const findDifference = (a, b) => {
+	const cuboidA = a.reduce(
+		(acc, cur) => acc * cur
+	)
+
+	const cuboidB = b.reduce(
+		(acc, cur) => acc * cur
+	)
+
+	if (cuboidA > cuboidB) {
+		return cuboidA - cuboidB
+	} else {
+		return cuboidB - cuboidA
+	}
+}
+```
+---
+
+### Vowel Count
+Return the number (count) of vowels in the given string.
+Consider `a`, `e`, `i`, `o`, `u` as vowels, but not `y`.
+The input string will only consist of lower case letters and/or spaces.
+
+```js
+const getCount = (str) => {
+	let vowels = 'aeiou'
+	let count = 0
+
+	for (let i = 0; i < str.length; i++) {
+		if (vowels.includes(str[i])) {
+			count++
+		}
+	}
+	return count
+}
+```
