@@ -126,3 +126,36 @@ const getCount = (str) => {
 	return count
 }
 ```
+---
+
+### Delete ocuurences of an element if occures more than n times
+Given a list and a number, create a new list that contains each number of `list` at most `n` times, without reordering.
+
+Example: for `n = 2` `[1, 2, 3, 1, 2, 1, 2, 3]` -> `[1, 2, 3, 1, 2, 3]`
+					 `n = 1` `[20, 37, 20, 21]` -> `[20, 37, 21]`
+
+```js
+const deleteNth = (arr, n) => {
+	// Keep track of how many times each element has appeared so far
+	const count = {}
+	// Array that contains the elements that have not appeared more than N times
+	const result = []
+
+	for (let i = 0; i < arr.length; i++) {
+		const num = arr[i]
+
+		// If the current element has not appeared before
+		if (count[num] === undefined) {
+			// Set count to 1 and add it to the result
+			count[num] = 1
+			result.push(num)
+		// If the current element has appeared before but < n times
+		} else if (count[num] < n) {
+			// Increment the count and and it to result
+			count[num]++
+			result.push(num)
+		}
+	}
+	return result
+}
+```
