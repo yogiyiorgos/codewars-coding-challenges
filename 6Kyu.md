@@ -159,3 +159,30 @@ const deleteNth = (arr, n) => {
 	return result
 }
 ```
+---
+
+### Build a pile of cubes
+Construct a building that is a pile of n cubes. The cube at the bottom will be a volume of $n^3$, the cube above will have volume of $(n-1)^3$ and so on until the top, which will have a volume of $1^3$.
+
+The parameter of the function findNb will be an integer m and you have to teturn the integer n such as $n^3+(n-1)^3+(n-2)^3+...+1^3=m$ if such n exists, or -1 if there is no such n.
+
+```js
+const findNb = (m) => {
+	// Keep track of the total volume of cubes added so far
+	let sum = 0
+	// n represents the number of cubes
+	let n = 1
+
+	while (sum < m) {
+		sum += Math.pow(n, 3)
+		n++
+	}
+	return sum === m ? n - 1 : -1
+}
+```
+
+
+
+
+When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are 
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
