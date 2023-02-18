@@ -180,6 +180,65 @@ const findNb = (m) => {
 	return sum === m ? n - 1 : -1
 }
 ```
+---
+
+### Running sum of 1d array
+Given an array `nums`. We define a runnig sum of an array as `sunningSum[i] = sum(nums[0]...nums[i])`. Return the running sum of `nums`.
+
+Example: 
+Input: `nums = [1, 2, 3, 4`
+Output: `[1, 3, 6, 10]`
+Explanation: `Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4`
+
+```js
+const runningSum = (nums) => {
+	// Keep track of the running sum
+	let runningSum = 0
+	// Store the running sum values for each index in the input array
+	let result = []
+
+	for (let i = 0; i < nums.lenght; i++) {
+		// Add the value of the i index to the running sum variable
+		runningSum += nums[i]
+		// Store the result in the result array at the same index i
+		result[i] = runningSum
+	}
+	return result
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
