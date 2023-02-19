@@ -1,3 +1,21 @@
+### A needle in the haystack
+Write a function `findNeedle()` that takes an `array` full of junk but containing one `"needle"`. After your function finds the needle it should return a string message:
+`"found the needle at position "` plus the `index`
+
+Example:
+`["hay", "junk", "hay", "hay", "moreJunk", "needle", "randomJunk"] --> "found the needle at position 5"`
+
+```js
+const findNeedle = (array) => {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] === 'needle') {
+			return `found the needle at position ${i}`
+		}
+	}
+}
+```
+---
+
 ### Binary Addition
 Implement a function that adds two numbers together and returns their sum in binary, as a string.
 
@@ -128,7 +146,7 @@ const getCount = (str) => {
 ```
 ---
 
-### Delete ocuurences of an element if occures more than n times
+### Delete occurences of an element if occures more than n times
 Given a list and a number, create a new list that contains each number of `list` at most `n` times, without reordering.
 
 Example: for `n = 2` `[1, 2, 3, 1, 2, 1, 2, 3]` -> `[1, 2, 3, 1, 2, 3]`
@@ -206,6 +224,45 @@ const runningSum = (nums) => {
 	return result
 }
 ```
+---
+
+### Abbreviate a two word name
+Write a function to convert a name into initials. The function takes two words with one space in between them.
+The output should be two capital letters with a dot separating them.
+
+Example: `Sam Harris` => `S.H`, `patrick feeney` => `P.F`
+
+```js
+const abbrevName = (name) => {
+	const names = name.split(' ')
+	const initials = names.map(n => n[0].toUpperCase()).join('.')
+	return initials
+}
+```
+---
+
+### Two Sum
+Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to `target`.
+You may assume that each input would have __exactly one solution__, and may not use the same element twice.
+You can return the answer in any order.
+
+Example:
+Input: `nums = [2, 7, 11, 15], target = 9`
+Output: `[0, 1]`
+Explanation: `Because nums[0] + nums[1] == 9, we return [0, 1]`
+
+```js
+const twoSum = (numbers, target) => {
+	for (let i = 0; i < numbers.length - 1; i++) {
+		for (let j = i + 1; j < numbers.length; j ++) {
+			if (numbers[i] + numbers[j] === target) {
+				return [i, j]
+			}
+		}
+	}
+}
+```
+---
 
 
 
