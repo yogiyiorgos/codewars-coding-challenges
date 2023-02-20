@@ -264,6 +264,60 @@ const twoSum = (numbers, target) => {
 ```
 ---
 
+### The Supermarket Queue
+*The example presents the computer science related idea of a thread pool.*
+
+There is a pool at the self-checkout tills at the supermarket. Write a function to calculate the total time required for all the customers to check out.
+
+Input:
+- customers: an array of positive integers representing the queue. Each integer represents a customer, and its value is the amount of time they require to check out.
+- n: a positive integer, the number of checkout tills.
+
+Output:
+- The function should return an integer, the total time required.
+
+Examples:
+```js
+console.log(queueTime([5, 3, 4], 1), '12')
+
+console.log(queueTime([10, 2, 3, 3], 2) '10')
+// Returns 10, because n=2 and the 2nd, 3rd, 4th persons in the queue finish 
+// before the 1st person has finished
+
+console.log(queueTime([2, 3, 10], 2), '12')
+```
+
+Clarifications:
+- There is only one queue getting served by many tills
+- The order of the queue never changes
+- The first person in the queue (i.e. the first element in the array) proceeds to a till as soon as it becomes free.
+
+```js
+const queueTime = (customers, n) => {
+	const tills = Array(n).fill(0)
+
+	for (let i = 0; i < customers.lenght; i++) {
+		const nextCustomer = customers[i]
+		const nextTill = tills.indexOf(Math.min(...tills))
+		tills[nextTill] += nextCustomer
+	}
+	return Math.max(...tills)
+}
+```
+
+We begin with initializing an array `tills` of length `n` with zeros.
+`const tills = Array(n).fill(0)`
+This array represents the time remaining on each checkout till. Initially, all the tills are empty and have zero time remaining.
+
+We loop over each customer in the `customers` array. For each customer, the function finds the checkout till with the minimum time remaining.
+`tills.indexOf(Math.min(...tills))`
+The `Math.min` method returns the smallest number in the `tills` array, which represents the shortest queue, and the `indexOf` method returns the index of that number in the `tills` array, which represents the till with the shortest queue.
+
+Once the function has found the till with the shortest queue, it adds the time required for the next customer to that till by updating the corresponding element in the `tills` array.
+`tills[nextTill] += nextCustomer`
+
+After all the customers have been added to the tills, the function returns the maximum time remaining in the `tills` array using the `Math.max` method. This represent the time required for the last customer to check out, which is the total time required for all the customers to check out.
+
 
 
 
