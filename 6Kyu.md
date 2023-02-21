@@ -318,6 +318,35 @@ Once the function has found the till with the shortest queue, it adds the time r
 
 After all the customers have been added to the tills, the function returns the maximum time remaining in the `tills` array using the `Math.max` method. This represent the time required for the last customer to check out, which is the total time required for all the customers to check out.
 
+---
+
+### Count of positives / Sum of negatives
+Given an array of integers.
+Return an array, where the first element is the count of positive numbers and the second element is the sum of negative numbers. 
+0 is neither positive nor negative and if the input is an empty array or is null, return an empty array.
+
+Example: `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]` -> `[10, -65]`
+
+```js
+const countPositivesSumNegatives = (input) {
+	if (input == null || input.length === 0) {
+		return []
+	}
+
+	let count = 0
+	let sum = 0
+	
+	for (let i = 0; i < input.length; i++) {
+		if (input[i] > 0) {
+			count++
+		} else if (input[i] < 0) {
+			sum += input[i]
+		}
+	}
+	return [count, sum]
+}
+```
+
 
 
 
