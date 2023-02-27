@@ -60,3 +60,73 @@ const longestCommonPrefix = (strs) => {
 	return prefix
 }
 ```
+
+**Another approach**
+```js
+const longestCommonPrefix = (strs) => {
+	if (!strs.length) return ''
+	strs.sort()
+
+	const first = strs[0]
+	const last = strs.[strs.length - 1]
+
+	let i = 0
+	// Iterate over the charackters of the 'first' and 'last' strings until a mismatch is found or the end of the 'first' string is reached
+	while (i < first.length && first.charAt(i) === last.charAt(i)) i++
+	// When a mismatch is found, we break out of the loop and return the common prefix up to but not including the mismatched character
+	return first.substring(0, i)
+}
+```
+---
+
+## Merge Two Sorted Lists
+Given the heads of two sorted lists `list1` and `list2`, merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the two lists.
+Return the head of the merged linked list.
+
+Example 1:
+Input: `list1 = [1, 2, 4]` `list2 = [1, 3, 4]`
+Output: `[1, 1, 2, 3, 4, 4]`
+
+Example 2:
+Input: `list1 = []` `list2 = []`
+Output: `[]`
+
+Example 3:
+Input: `list1 = []` `list2 = [0]`
+Output: `[0]`
+
+```js
+const mergeTwoLists = (list1, list2) => {
+	let merged = []
+	let i = 0 // pointer for list1
+	let j = 0 // pointer for list2
+
+	// while both arrays still have elements
+	while (i < list1.length && j < list2.length) {
+		if (list1[i] < list2[j]) {
+			merged.push(list1[i]) // add element of list1 to merged array
+			i++ // move pointer to next element in list1
+		} else {
+			merged.push(list2[j]) // add element of list2 to merged array
+			j++ // move pointer to next element in list2
+		}
+	}
+
+	// if there are still elements in list1, add them to merhed array
+	while (i < list1.length) {
+		merged.push(list1[i])
+		i++
+	}
+
+	while (j < list2.length) {
+		merged.push(list2[j])
+		j++
+	}
+	return merged
+}
+```
+
+In this example we have two pointers `i` and `j` that point to the first element of each array respectively. We compare the elements at the current pointers and add the smaller one to the `merged` array, then move the pointer of the array we took the smaller element from to the next position.
+We repeat this process until we reach the end of either array, at which point we add the remaining elements to the `merged` array.
+
+---
