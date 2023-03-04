@@ -124,9 +124,33 @@ const mergeTwoLists = (list1, list2) => {
 	}
 	return merged
 }
+
+console.log(mergeTwoLists([1, 3, 5], [2, 4, 6]), '[1, 2, 3, 4, 5, 6]')
 ```
 
 In this example we have two pointers `i` and `j` that point to the first element of each array respectively. We compare the elements at the current pointers and add the smaller one to the `merged` array, then move the pointer of the array we took the smaller element from to the next position.
 We repeat this process until we reach the end of either array, at which point we add the remaining elements to the `merged` array.
 
 ---
+
+## Remove duplicates from Sorted Array
+Given an integer array `nums` sorted in **non-decreasing order**, remove the duplicates in-place such that each unique element appears only **once**. The **relative order** of the elements should be kept the **same**.
+Do not allocate extra space for another array. You must do this by **modifying the input array in-place** with O(1) extra memory.
+
+```js
+const removeDuplicates = (nums) => {
+	if (nums.length === 0) {
+		return 0
+	}
+	let j = 0 // keeps track of the last unique element found
+
+	for (let i = 1; i < nums.length; i++) {
+		if (nums[i] !== nums[j]) {
+			j++
+			nums[j] = nums[i]
+		}
+	}
+	return j + 1 // the length of the array containing the unique elements
+}
+```
+
