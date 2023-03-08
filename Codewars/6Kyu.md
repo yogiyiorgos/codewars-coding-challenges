@@ -346,6 +346,45 @@ const countPositivesSumNegatives = (input) {
 	return [count, sum]
 }
 ```
+---
+
+### Highest Scoring Word
+Given a string of words, find the highest scoring word.
+Each letter of a word scores points according to its position in the alphabet: `a = 1, b = 2, c = 3` etc.
+Return the highest scoring word as a string. If two words are the same, return the word that appears earliest in the original string.
+All letters will be lowercase and all inputs will be valid.
+
+Example: `abad -> 8 (1 + 2 + 1 + 4)`
+
+```js
+const high = (str) => {
+	// Split the given string into an array of words
+	let words = str.split(' ')
+
+	let highestScore = 0
+	let highestScoreWord = ''
+
+	// Loop through each word
+	words.forEach(word => {
+		let score = 0
+
+		// Loop through each character of the word and calculate its score
+		for (let i = 0; i < word.length; i++) {
+			score += word.charCodeAt(i) - 96 
+			// Subtracting 96 converts a to 1, b to 2, etc.
+		}
+
+		// If the current word's score is higher than the highest score, 
+		// update the highest score and word
+		if (score > highestScore) {
+			highestScore = score
+			highestScoreWord = word
+		}
+	})
+	return highestScoreWord
+	
+}
+```
 
 
 
