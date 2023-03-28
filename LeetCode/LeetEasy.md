@@ -131,6 +131,36 @@ console.log(mergeTwoLists([1, 3, 5], [2, 4, 6]), '[1, 2, 3, 4, 5, 6]')
 In this example we have two pointers `i` and `j` that point to the first element of each array respectively. We compare the elements at the current pointers and add the smaller one to the `merged` array, then move the pointer of the array we took the smaller element from to the next position.
 We repeat this process until we reach the end of either array, at which point we add the remaining elements to the `merged` array.
 
+```js
+const mergeTwoLists = (list1, list2) => {
+	// Initialize a new linked list with a dummy node
+	let mergedList = new ListNode(0)
+	// Initialize pointer variables to point to the heads of list1 and list2
+	let p = list1
+	let q = list2
+	// Initialize a pointer variable to traverse the new merged list
+	let curr = mergedList
+	// Iterate over both input linked lists
+	while (p != null && q !== null) {
+		// Compare the values of the current nodes pointed to by p and q
+		if (p.val < q.val) {
+			// Add the current node pointed to by p to mergedList and move p to its next node
+			curr.next = p
+			p = p.next
+		} else {
+			// Add the current node pointed to by q to mergedList and move q to its next node
+			curr.next = q
+			q = q.next
+		}
+		// Move curr to its next node in the merged list
+		curr = curr.next
+	}
+	// Add the remaining nodes of list1 or list2 to mergedList
+	curr.next = p !== null ? p : q
+	// Return the head of the merged list (next property of the dummy node)
+	return mergedList.next
+}
+```
 ---
 
 ## Remove duplicates from Sorted Array
