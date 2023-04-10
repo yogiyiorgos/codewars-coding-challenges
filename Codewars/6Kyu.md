@@ -382,41 +382,52 @@ const high = (str) => {
 		}
 	})
 	return highestScoreWord
-	
 }
 ```
+---
 
+### Bouncing Balls
+1. A child drops a ball out of a window on the nth floor of a tall building. The height of this floor above ground level, `h`, is known.
+2. The ball bounces to two-thirds of its previous height (a bounce of 0.66). This means that if the ball drops from a height of `h`, it will bounce up to a height of `0.66h`.
+3. The child's mother is looking out of the window that is 1.5 meters from the ground.
+4. We need to determine how many times the mother will see the ball pass in front of her window, including when it's falling and bouncing.
 
+First, we need to check if the input values meet the conditions given in the problem statement. If any of the conditions are not met, we should return -1.
 
+Next, we can calculate the total distance the ball travels before it stops bouncing. This is given by the formula:
+`total_distance = h + 0.66h + 0.66^2h + 0.66^3h + ...`
 
+This is an infinite geometric series, which has a closed form solution:
+`total_distance = h * (1 + 0.66 + 0.66^2 + 0.66^3 + ...) = h * (1/(1 - 0.66)) = 2.94h`
 
+**The total distance the ball travels before it stops bouncing is 2.94 times the height of the initial drop**
 
+Next, we need to determine how many times the ball passes in front of the mother's window. To do this, we can calculate the height of the ball at each bounce, and check if it higher than the height of the window. If it is, we count it as a pass.
 
+Let's assume that the height of the window is w. The height of the ball at each bounce can be calculated using the formula:
+`height = 0.66^n * h`
+where `n` is the number of bounces. We can stop counting the bounces when the height of the balls is less than or equal to the height of the window.
 
+```js
+const bouncingBall = (h, bounce, window) => {
+	if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h) {
+		return -1
+	}
 
+	let height  = h
+	passes = 0
 
+	while (height > window) {
+		passes += 1
+		height *= bounce
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		if (height > window) {
+			passes += 1
+		}
+	}
+	return passes
+}
+```
 
 
 
