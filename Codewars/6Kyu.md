@@ -386,7 +386,7 @@ const high = (str) => {
 ```
 ---
 
-### Bouncing Balls
+### Bouncing Balls 1st Interpretation
 1. A child drops a ball out of a window on the nth floor of a tall building. The height of this floor above ground level, `h`, is known.
 2. The ball bounces to two-thirds of its previous height (a bounce of 0.66). This means that if the ball drops from a height of `h`, it will bounce up to a height of `0.66h`.
 3. The child's mother is looking out of the window that is 1.5 meters from the ground.
@@ -428,6 +428,49 @@ const bouncingBall = (h, bounce, window) => {
 	return passes
 }
 ```
+
+
+### Bouncing Balls 2nd Interpretation
+Let's say the height of the floor on which the child is playing is `h` meters. The ball is dropped from this height and it bounces back to 2/3 of its height i.e. at a height of `0.66 * h` meters.
+
+Now, let's assume that the window height of the mother is `w` meters from the ground. We need to calculate the number of times the mother will see the ball pass in front of her window.
+
+To solve this problem, we can use the following steps:
+1. We need to check if all the conditions of the problem are met or not.
+		`h > 0 && bounce > 0 && bounce < 1 && w < h`
+		If any of these conditions are not met, we return -1.
+2. If all the conditions are met, then we can calculate the total distance traveled by the ball before it stops bouncing.
+		`total_distance = h + (0.66h) + (0.66 * 0.66h) + (0.66 * 0.66 * 0.66h) + ...`
+		Since the ball bounces 2/3 of its height each time, the total distance traveled can be expressed as an infinite geometric series with the first term `h` and the common ratio `0.66`.
+		`total_distance = h * (1 / (1 - 0.66))
+		`total_distance = h / 0.34`
+3. Once we have calculated the total distance traveled by the ball, we can calculate the number of times it passes in front of the mother's window.
+		`num_passes = 1 + int((total_distance - w) / (0.66h)`
+		Here, we add 1 to account for the first time the ball passes in front of the window when it is falling.
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
