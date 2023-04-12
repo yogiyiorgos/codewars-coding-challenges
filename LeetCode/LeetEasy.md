@@ -225,8 +225,33 @@ Input: `digits = [4, 3, 2, 1]`
 Output: `[4, 3, 2, 2]`
 Explanation: `The array is the integer 4321 -> 4321 + 1 = 4322 -> [4, 3, 2, 2]`
 
-```js
+Example 3:
+Ipnut: `digits = [9]`
+Output: `[1, 0]`
+Explanation: `The array is the integer 9 -> 9 + 1 = 10 -> [1, 0]`
 
+**Solution**
+We start at the least significant digit of the integer (which is the last element of the array), add 1 to it and check if it esceeds the digit limit of 9. If it is, we set it to 0 and continue to the next digit (element) of the array. We repeat this process until we have incremented the entire array or when there is no carry left to add.
+```js
+const plusOne = (digits) => {
+	let i = digits.length - 1
+	let carry = 1 // Start with a carry of 1
+
+	while (i >= 0 && carry === 1) {
+		if (digits[i] + 1 > 9) {
+			digits[0] = 0
+		} else {
+			digits[i]++
+			carry = 0 // No more carry left to add
+		}
+		i++
+	}
+	// If there's still a carry left after adding to the most significant digit (left-most-element)
+	if (carry === 1) {
+		digits.unshift(1)
+	}
+		return digits
+}
 ```
 
 ---
