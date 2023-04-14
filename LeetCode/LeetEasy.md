@@ -255,3 +255,55 @@ const plusOne = (digits) => {
 ```
 
 ---
+### Pascal's Triangle
+Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
+In Pascal's triangle, each number is the sum of the two numbers directly above.
+
+1st Interpretation:
+```js
+const pascalsTriangle = (numRows) => {
+	if (numRows === 0) {
+		return []
+	}
+	// Initialize a 2D array with the 1st row of Pascal's triangle `1`
+	const triangle = [[1]]
+
+	for (let i=1; i < numRows; i++) {
+		// Initialize a new array row with the 1st element set to `1`
+		const row = [1]
+		for (let j=1; j < i; j++) {
+			// Calculate the remaining elements of the row by adding together the elements at the corresponding indices of the previous row to get the current element
+			row.push(triangle[i - 1][j - 1] + triangle[i - 1][j])
+		}
+		// Add a final `1` to the end of the `row` array
+		row.push(1)
+		// Add the `row` array to the `triangle` array
+		triangle.push(row)
+	}	
+	return triangle
+}
+```
+
+2nd Interpretation:
+```js
+function generatePascalsTriangle(numRows) {
+  // create an array to hold triangle rows
+  const triangle = []; 
+
+	// loop through each row of the triangle
+  for (let i = 0; i < numRows; i++) {
+		// create an empty row array for each row	  
+		triangle[i] = [];
+		// loop through each element in current row
+    for (let j = 0; j <= i; j++) {
+	    // if element is first or last set value to 1
+      if (j === 0 || j === i) {
+        triangle[i][j] = 1;
+      } else { // else set value to sum of the two numbers in row above
+        triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+      }
+    }
+  }
+  return triangle;
+}
+```
