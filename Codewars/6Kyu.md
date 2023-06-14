@@ -449,7 +449,49 @@ To solve this problem, we can use the following steps:
 		Here, we add 1 to account for the first time the ball passes in front of the window when it is falling.
 ---
 
+### Sum arrays
+Write a function that takes an array of numbers and returns the sum of the numbers. The numbers can be negative or non-integer. If the array does not contain any numbers then you should return 0.
+```js
+const numbers = [1, 2, 3, 4, 5]
 
+const sum = (numbers) => {
+	if (numbers.length === 0) {
+		return 0
+	} else {
+		return numbers.reduce((acc, cur) => {
+			retrun acc + cur
+		}, 0)
+	}
+}
+
+console.log(sum(numbers), '15') // prints: 15 15
+```
+---
+
+### Opposite number
+Given an integer or a floating-point number, find its opposite.
+```js
+const opposite = (number) => {
+	return -number
+}
+```
+---
+
+Find multiples of a number
+Build a program that takes a value, `integer`, and returns a list of its multiples up to another value, `limit`. If `limit` is a multiple of `integer`, it should be included as well. There will only be positive integers passed into the function, not consisting of 0. The limit will always be higher than the base.
+
+Example: `(2, 6)` return `[2, 4, 6]` as 2, 4, and 6 are the multiples of 2 up to 6.
+```js
+const findMultiples = (integer, limit) => {
+	const multiples = []
+
+	for (i = integer, i <= limit; i = i + integer) {
+		multiples.push(i)
+	}
+
+	return multiples
+} 
+```
 
 
 
