@@ -477,7 +477,7 @@ const opposite = (number) => {
 ```
 ---
 
-Find multiples of a number
+### Find multiples of a number
 Build a program that takes a value, `integer`, and returns a list of its multiples up to another value, `limit`. If `limit` is a multiple of `integer`, it should be included as well. There will only be positive integers passed into the function, not consisting of 0. The limit will always be higher than the base.
 
 Example: `(2, 6)` return `[2, 4, 6]` as 2, 4, and 6 are the multiples of 2 up to 6.
@@ -492,9 +492,59 @@ const findMultiples = (integer, limit) => {
 	return multiples
 } 
 ```
+---
 
+### Sum of the two lowest positive integers
+Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed.
 
+Example: `[19, 5, 42, 2, 77]` -> `7`
+Example: `[10, 343445353, 3453445, 3453545353453]` -> `3453455`
 
+```js
+const twoSmallestNumbers = (numbers) => {
+	numbers.sort((a, b) => a - b)
+	return numbers[0] + numbers[1]
+}
+```
+
+Solution without the `sort()` method:
+```js
+const sumTwoSmallestNumbers = (numbers) => {
+	let min1 = Infinity
+	let min2 = Infinity
+
+	for (let num of numbers) {
+		if (num > 0) {
+				min2 = min1
+				min1 = num
+			} else if (num < min2) {
+				min2 = num
+			}
+		}
+	}
+	return min1 + min2
+}
+```
+--- 
+
+### Find the middle element
+Create a function that when provided with a triplet, returns the index of the numerical element that lies between the other two elements.
+The argument to the function is an array of three distinct numbers.
+
+Example: `gimme([2, 3, 1])` -> `0`
+Example: `gimme([5, 10, 14)]` -> `1`
+
+```js
+function gimme(triplet) {
+	let mid = triplet[0]
+
+	if (mid > triplet[1] && mid < triplet[2]) {
+		return mid
+	}
+
+	
+}
+```
 
 
 
