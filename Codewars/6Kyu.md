@@ -546,6 +546,55 @@ function gimme(triplet) {
 }
 ```
 
+---
+
+### Primes in numbers
+Given a positive number > 1, find the prime factor decomposition of n. The result will be a
+string with the following form:
+`'(p1**n1)(p2**n2)...(pk**nk)'`
+with the p(i) in increasing order and n(i) empty if n(i) is 1.
+
+Example: `n = 86240` -> `(2**5)(5)(7**2)(11)`
+
+```js
+function primeFactors(n) {
+	if (n <= 1) {
+		return 'Invalid input. Number must be greater than 1.'
+	}
+
+	let result = ''
+	let divisor = 2
+
+	while (n > 1) {
+		let count = 0
+
+		while (n % divisor === 0) {
+			n /= divisor
+			count++
+		}
+
+		if (count > 0) {
+			result += `(${divisor}`
+			if (count > 1) {
+				result += `**${count}`
+			}
+			result += ')'
+		}
+		divisor++
+	}
+	return result
+}
+
+const a = 86242
+console.log(primeFactors(a))
+
+const b = 7775460
+console.log(primeFactors(b))
+
+const c = 7919
+console.log(primeFactors(c))
+`
+
 
 
 
